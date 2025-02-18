@@ -4,10 +4,11 @@ print("---------------------------------------------------------------")
 
 # Data stok disimpan dalam list
 stok_gudang = [
-    {"kode": "Q1", "nama": "Spion Motor", "jumlah": 50, "lokasi": "Gudang 1"},
-    {"kode": "Q2", "nama": "Aki Mobil", "jumlah": 30, "lokasi": "Gudang 2"},
-    {"kode": "Q3", "nama": "Lampu Sen Motor", "jumlah": 20, "lokasi": "Gudang 1"},
+    {"kode": "Q1", "nama": "Spion Motor", "jumlah": 50, "lokasi": "Gudang 1", "harga": 150000},
+    {"kode": "Q2", "nama": "Aki Mobil", "jumlah": 30, "lokasi": "Gudang 2", "harga": 250000},
+    {"kode": "Q3", "nama": "Lampu Sen Motor", "jumlah": 20, "lokasi": "Gudang 1", "harga": 50000},
 ]
+
 
 # Data akun login
 akun = {
@@ -79,14 +80,14 @@ def lihat_stok():
         print("Stok kosong.")
     else:
         for item in stok_gudang:
-            print(f"Kode Barang: {item['kode']}, Nama: {item['nama']}, Jumlah: {item['jumlah']}, Lokasi: {item['lokasi']}")
+            print(f"Kode Barang: {item['kode']}, Nama: {item['nama']}, Jumlah: {item['jumlah']}, Lokasi: {item['lokasi']}, Harga: {item['harga']}")
 
 def lihat_stok_tertentu():
     kode_barang = input("Masukkan Kode barang yang ingin dilihat: ")
     print(f"\nKode yang Anda cari = {kode_barang}")
     for item in stok_gudang:
         if item['kode'] == kode_barang:
-            print(f"Kode Barang: {item['kode']}, Nama: {item['nama']}, Jumlah: {item['jumlah']}, Lokasi: {item['lokasi']}")
+            print(f"Kode Barang: {item['kode']}, Nama: {item['nama']}, Jumlah: {item['jumlah']}, Lokasi: {item['lokasi']}, Harga: {item['harga']}")
             return
     print("=====Kode tidak ditemukan!=====")
 
@@ -110,9 +111,10 @@ def tambah_stok():
     nama = input("Masukkan nama barang: ")
     jumlah = int(input("Masukkan jumlah barang: "))
     lokasi = input("Masukkan lokasi gudang: ")
+    harga = int(input("Masukkan harga barang: "))
     keputusan = input("Apakah Stok Data Akan Disimpan? (y/n): ")
     if keputusan == "y" or keputusan == "Y":
-        stok_gudang.append({"kode": kode_barang, "nama": nama, "jumlah": jumlah, "lokasi": lokasi})
+        stok_gudang.append({"kode": kode_barang, "nama": nama, "jumlah": jumlah, "lokasi": lokasi, "harga": harga})
         print("=====Stok Barang Berhasil Ditambahkan!=====")
     else:
         print("=====Stok Barang Tidak Disimpan!=====.")
@@ -138,18 +140,21 @@ def update_stok():
     for item in stok_gudang:
         if item['kode'] == kode_barang:
             print("\n===== Data Barang Saat Ini =====")
-            print(f"Kode Barang: {item['kode']}, Nama: {item['nama']}, Jumlah: {item['jumlah']}, Lokasi: {item['lokasi']}")
+            print(f"Kode Barang: {item['kode']}, Nama: {item['nama']}, Jumlah: {item['jumlah']}, Lokasi: {item['lokasi']}, Harga: {item['harga']}")
             print("================================")
             keputusan = input("Apakah kamu yakin ingin mengupdate stok? (y/n): ")
             if keputusan == "y" or keputusan == "Y":
                 nama_baru = input("Masukkan nama baru (kosongkan jika tidak diubah): ")
                 jumlah_baru = input("Masukkan jumlah baru (kosongkan jika tidak diubah): ")
                 lokasi_baru = input("Masukkan lokasi baru (kosongkan jika tidak diubah): ")
+                harga_baru = input("Masukkan harga baru (kosongkan jika tidak diubah): ")
                 
                 if nama_baru:
                     item['nama'] = nama_baru
                 if jumlah_baru.isdigit():
                     item['jumlah'] = int(jumlah_baru)
+                if harga_baru:
+                    item['harga'] = harga_baru
                 if lokasi_baru:
                     item['lokasi'] = lokasi_baru
 
